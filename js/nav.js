@@ -4,6 +4,7 @@
  * Handling navbar clicks and updating navbar
  */
 
+
 /** Show main list of all stories when click site name */
 
 function navAllStories(evt) {
@@ -34,5 +35,6 @@ function updateNavOnLogin() {
   $(".main-nav-links").show();
   $navLogin.hide();
   $navLogOut.show();
+  $navStoryComponents.show();
   $navUserProfile.text(`${currentUser.username}`).show();
 }

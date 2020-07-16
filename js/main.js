@@ -14,6 +14,11 @@ const $navLogin = $("#nav-login");
 const $navUserProfile = $("#nav-user-profile");
 const $navLogOut = $("#nav-logout");
 
+const $navStoryComponents = $('.nav-story-components')
+const $navSubmitStory = $('#nav-submit-story');
+const $navFavorites = $('#nav-favorites');
+const $navMyStories = $('#nav-my-stories');
+
 
 /** To make it easier for individual components to show just themselves, this
  * is a useful function that hides pretty much everything on the page. After
@@ -29,11 +34,11 @@ function hidePageComponents() {
   components.forEach(c => c.hide());
 }
 
-
 /** Overall function to kick off the app. */
 
 async function start() {
   console.debug("start");
+  $navStoryComponents.hide();
   // "Remember logged-in user" and log in, if credentials in localStorage
   await checkForRememberedUser();
 

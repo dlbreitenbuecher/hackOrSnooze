@@ -31,22 +31,17 @@ async function login(evt) {
 $loginForm.on("submit", login);
 
 /** Handle signup form submission. */
-
 async function signup(evt) {
   console.debug("signup", evt);
   evt.preventDefault();
-
-  const name = $("#create-account-name").val();
-  const username = $("#create-account-username").val();
-  const password = $("#create-account-password").val();
-
+  const name = $("#signup-name").val();
+  const username = $("#signup-username").val();
+  const password = $("#signup-password").val();
   // User.signup retrieves user info from API and returns User instance
   // which we'll make the globally-available, logged-in user.
   currentUser = await User.signup(username, password, name);
-
   saveUserCredentialsInLocalStorage();
   updateUIOnUserLogin();
-
   $signupForm.trigger("reset");
 }
 
