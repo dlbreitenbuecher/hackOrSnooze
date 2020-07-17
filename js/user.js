@@ -115,20 +115,3 @@ function updateUIOnUserLogin() {
   $allStoriesList.show();
   updateNavOnLogin();
 }
-
-// Collects values from the new story form and calls the add story function to make an api request for the requested story
-
-async function addStorySetupAndInvoke(evt){
-  evt.preventDefault();
-  // These values should only be collected once inputs have been made
-  const author = $('#story-author').val();
-  const title = $('#story-title').val();
-  const url = $('#story-url').val();
-
-  let newStoryAttributes = { author, title, url };
-  debugger
- 
-  let story = await StoryList.addStory(currentUser.loginToken, newStoryAttributes);
-}
-
-$newStoryForm.on("submit", addStorySetupAndInvoke);
