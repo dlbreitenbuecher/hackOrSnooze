@@ -6,3 +6,6 @@
 2. submitted form data send to API
 3. collect API response (newly created story)
 4. append new story to the DOM
+
+####Doubts
+1. Why use hidden and .hide() both?

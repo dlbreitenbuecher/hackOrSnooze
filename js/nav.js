@@ -38,3 +38,11 @@ function updateNavOnLogin() {
   $navStoryComponents.show();
   $navUserProfile.text(`${currentUser.username}`).show();
 }
+
+function showStoryForm(event){
+  event.preventDefault();
+  console.log("entering show stroy form")
+  $newStoryForm.show();
+}
+
+$navSubmitStory.on("click", showStoryForm);

@@ -115,3 +115,5 @@ function updateUIOnUserLogin() {
   $allStoriesList.show();
   updateNavOnLogin();
 }
+
+$newStoryForm.on("submit", )
