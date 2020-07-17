@@ -9,3 +9,9 @@
 
 ####Doubts
 1. Why use hidden and .hide() both?
+
+
+##Adding Favorites
+1.create a favorites section in html that is hidden by default
+2. add favorite story objects to favorites section
+3. when 'favorites' in navbar is clicked, hide all stories and show favorite stories only

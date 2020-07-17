@@ -16,6 +16,10 @@
   margin: 20px 30px;
 }
 
+.star {
+  cursor: pointer;
+}
+
 
 /* Individual stories */
 

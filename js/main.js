@@ -16,12 +16,15 @@ const $navUserProfile = $("#nav-user-profile");
 const $navLogOut = $("#nav-logout");
 
 const $navStoryComponents = $('.nav-story-components')
+const $hackOrSnooze = $('#nav-all');
 const $navSubmitStory = $('#nav-submit-story');
 const $navFavorites = $('#nav-favorites');
 const $navMyStories = $('#nav-my-stories');
 
 const $newStoryForm = $("#submit-story-form");
+
 const $favoriteIcon = $(".favourite");
+const $favoriteStoriesList = $('#favorite-stories-list')
 
 //const $newstoryFormContainer = $("#submit-story-container");
 
@@ -36,7 +39,8 @@ function hidePageComponents() {
     $allStoriesList,
     $loginForm,
     $signupForm,
-    $newStoryForm
+    $newStoryForm,
+    $favoriteStoriesList
   ];
   components.forEach(c => c.hide());
 }
@@ -53,7 +57,7 @@ async function start() {
   storyList = await StoryList.getStories();
   $storiesLoadingMsg.remove();
 
-  putStoriesOnPage();
+  putStoriesOnPage(storyList.stories, $allStoriesList);
 }
 
 
