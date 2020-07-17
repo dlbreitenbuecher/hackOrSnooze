@@ -21,6 +21,7 @@ const $navFavorites = $('#nav-favorites');
 const $navMyStories = $('#nav-my-stories');
 
 const $newStoryForm = $("#submit-story-form");
+const $favoriteIcon = $(".favourite");
 
 //const $newstoryFormContainer = $("#submit-story-container");
 
