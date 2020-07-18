@@ -99,6 +99,13 @@ class StoryList {
     console.log("response of favs ", response);
   }
 
+  static async removeFavStory(userDetails, storyId) {
+    const { username, loginToken } = userDetails;
+    const response = await axios.post(`${BASE_URL}/users/${username}/favorites/${storyId}`, {
+      token: loginToken
+    });
+    console.log('Removed story from Favorites', response);
+  }
 }
 
 

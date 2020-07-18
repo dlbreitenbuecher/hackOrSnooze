@@ -9,6 +9,7 @@
 
 function navAllStories(evt) {
   console.debug("navAllStories", evt);
+  debugger
   hidePageComponents();
   putStoriesOnPage(storyList.stories, $allStoriesList);
 }

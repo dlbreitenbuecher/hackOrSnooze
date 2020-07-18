@@ -120,7 +120,7 @@ function removeStoryFromFavorites(favStory) {
 
 /* This method lets user click on fav icon to add/remove story from favs by making corresponding API calls*/
 
-function addOrRemoveFavorites(event) {
+async function addOrRemoveFavorites(event) {
   console.log("while coming in ", currentUser.favorites)
  
   let favStoryId = $(event.target).closest("li").attr("id");
@@ -128,12 +128,13 @@ function addOrRemoveFavorites(event) {
   
   if ( classOfId === "far fa-star") {
     $(event.target).toggleClass("fas");
-    StoryList.addFavStory(currentUser, favStoryId);
+    await StoryList.addFavStory(currentUser, favStoryId);
   }
   else {
     
     $(event.target).toggleClass("fas");
-    removeStoryFromFavorites(favStory)
+    await StoryList.removeFavStory(currentUser, favStoryId);
+    putFavoriteStoriesOnPage(event);
   }
 
 }
