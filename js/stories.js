@@ -4,6 +4,7 @@
 let storyList;
 
 
+
 // Add story markup to DOM
 function addOneStoryToPage(story, $location) {
   const markup = generateStoryMarkup(story);
@@ -23,12 +24,14 @@ function generateStoryMarkup(story) {
   // console.debug("generateStoryMarkup", story);
   const hostName = story.getHostName();
 
+  let star = (story.isFavorite) ? "fas" : "far";
   // render all the rest of the story markup
+  console.log("star element", star);
 
   return $(`
         <li id="${story.storyId}">
           <span class="favourite star">
-            <i class="far fa-star selected-star"></i>
+            <i class="${star} fa-star"></i>
           </span>
           <a class="story-link" href="${story.url}" target="a_blank">
             ${story.title}
@@ -84,30 +87,55 @@ function getStoryIdFormStoryList(favStoryId) {
   return null;
 }
 
-//Add story to list of favorite stories
-function addStoryToFavorites(event) {
-  let favStoryId = $(event.target).closest("li").attr("id");
-  let favStory = getStoryIdFormStoryList(favStoryId);
-  $(event.target).removeClass('far');
-  $(event.target).addClass('fas');
-  currentUser.favorites.push(favStory);
-}
 
-$allStoriesList.on("click", "i", addStoryToFavorites);
+//$allStoriesList.on("click", ".far", addStoryToFavorites);
+
 
 // Displays favorite stories and hides all non-favorited stories
 function putFavoriteStoriesOnPage(evt) {
   evt.preventDefault();
   hidePageComponents();
 
-  if(currentUser.favorites.length === 0 ) {
+  if (currentUser.favorites.length === 0) {
     $favoriteStoriesList.html('<h3>No Favorites Added!</h3>');
   } else {
     putStoriesOnPage(currentUser.favorites, $favoriteStoriesList);
-    
+
   }
 
   $favoriteStoriesList.show();
 }
 
 $navFavorites.on('click', putFavoriteStoriesOnPage);
+
+
+function removeStoryFromFavorites(favStory) {
+  console.log("before removed ", currentUser)
+  
+  let indexOfStory = currentUser.favorites.indexOf(favStory);
+
+  currentUser.favorites.splice(indexOfStory, 1);
+  console.log("removed ", currentUser)
+}
+
+/* This method lets user click on fav icon to add/remove story from favs by making corresponding API calls*/
+
+function addOrRemoveFavorites(event) {
+  console.log("while coming in ", currentUser.favorites)
+ 
+  let favStoryId = $(event.target).closest("li").attr("id");
+  let classOfId = $(event.target).attr("class");
+  
+  if ( classOfId === "far fa-star") {
+    $(event.target).toggleClass("fas");
+    StoryList.addFavStory(currentUser, favStoryId);
+  }
+  else {
+    
+    $(event.target).toggleClass("fas");
+    removeStoryFromFavorites(favStory)
+  }
+
+}
+
+$allStoriesList.on("click", "i", addOrRemoveFavorites);

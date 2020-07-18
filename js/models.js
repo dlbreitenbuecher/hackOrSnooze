@@ -26,7 +26,7 @@ class Story {
   /** Parses hostname out of URL and returns it. */
   getHostName() {
     let location = this.url;
-    return (new URL(location)).hostname; 
+    return (new URL(location)).hostname;
   }
 }
 
@@ -88,7 +88,20 @@ class StoryList {
     console.log('response.data', response.data.story);
     return new Story(response.data.story);
   }
+
+  /* This method makes an API call to add user's stories to favorites */
+
+  static async addFavStory(userDetails, storyId) {
+    const { username, loginToken } = userDetails;
+    const response = await axios.post(`${BASE_URL}/users/${username}/favorites/${storyId}`, {
+      token: loginToken
+    })
+    console.log("response of favs ", response);
+  }
+
 }
+
+
 
 /******************************************************************************
  * The User class to primarily represent the current user.
